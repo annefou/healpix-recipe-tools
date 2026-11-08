@@ -33,21 +33,24 @@ something generic that is missing, add it there, not in the recipe.
    `bio15` differently under the same names. Expect such surprises.
 3. **Missing data**: say how the source marks it. A file that declares no nodata value (CHELSA) is
    read as is, so a numeric fill would be averaged in as data.
-4. **Licence**: the recipe's code is Apache-2.0; the data keep their own licence, which goes into
+4. **Coasts**: say whether the source has values over the sea, and apply the land mask the user
+   chooses (`land_mask`, default Natural Earth 10 m; `None` keeps the source's values). The output
+   records the mask and its licence.
+5. **Licence**: the recipe's code is Apache-2.0; the data keep their own licence, which goes into
    `SOURCE`, the README and the STAC metadata of every output. A non-open licence (WorldClim) is
    stated plainly: converted layers may then not be shared without the provider's permission.
-5. **Reference test**: one network test converts a small region and compares the cell means with
+6. **Reference test**: one network test converts a small region and compares the cell means with
    values produced once by an **independent** method, stored in `tests/reference/` with how they
    were made. No live dependency on that method.
-6. **Pins**: healpix-convert at the commit the recipe was tested with; `pixi.lock` committed.
-7. **Releases**: one repository per source, named `<source>-healpix-recipe`; each release gets its own
+7. **Pins**: healpix-convert at the commit the recipe was tested with; `pixi.lock` committed.
+8. **Releases**: one repository per source, named `<source>-healpix-recipe`; each release gets its own
    Zenodo DOI, so a paper can cite the exact recipe version it used.
 
 ## Review checklist
 
 - [ ] `SOURCE` complete, each field taken from the provider's pages
 - [ ] every unit and definition checked against the data (script in `examples/`, result in README)
-- [ ] missing-data encoding known and handled
+- [ ] missing-data encoding known and handled; values over the sea known; `land_mask` supported
 - [ ] licence stated in `SOURCE`, README and STAC output; non-open licences flagged
 - [ ] depth chosen from the source's resolution, and why, in the README
 - [ ] offline tests pass; the reference test passes with its tolerances stated

@@ -7,6 +7,7 @@ platforms = ["linux-64", "osx-arm64"]
 python = "3.12.*"
 rasterio = ">=1.4"
 healpix-geo = ">=0.4.1"
+pyogrio = ">=0.13.0,<0.14"
 
 [pypi-dependencies]
 healpix-recipe-tools = { path = ".", editable = true }
